@@ -2,18 +2,21 @@
   "manifest_version": 3,
   "name": "Block Anything",
   "version": "0.1.0",
-  "description": "Hide feed items that match plain-English rules, judged by a decision model (Jev) or any LLM on OpenRouter.",
+  "description": "Hide posts on YouTube, Reddit, X and Hacker News that match your plain-English rules, judged by Jev via OpenRouter.",
   "browser_specific_settings": {
     "gecko": {
-      "id": "block-anything@local",
-      "strict_min_version": "128.0"
+      "id": "block-anything@unkarelian",
+      "strict_min_version": "140.0",
+      "data_collection_permissions": {
+        "required": ["websiteContent"]
+      }
     }
   },
   "icons": {
     "48": "icons/icon.svg",
     "96": "icons/icon.svg"
   },
-  "permissions": ["storage", "tabs"],
+  "permissions": ["storage"],
   "host_permissions": [
     "https://openrouter.ai/*",
     "*://*.youtube.com/*",
