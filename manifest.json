@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Block Anything",
+  "version": "0.1.0",
+  "description": "Hide feed items that match plain-English rules, judged by a decision model (Jev) or any LLM on OpenRouter.",
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "block-anything@local",
+      "strict_min_version": "128.0"
+    }
+  },
+  "icons": {
+    "48": "icons/icon.svg",
+    "96": "icons/icon.svg"
+  },
+  "permissions": ["storage", "tabs"],
+  "host_permissions": [
+    "https://openrouter.ai/*",
+    "*://*.youtube.com/*",
+    "*://*.reddit.com/*",
+    "*://x.com/*",
+    "*://twitter.com/*",
+    "*://news.ycombinator.com/*"
+  ],
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.youtube.com/*",
+        "*://*.reddit.com/*",
+        "*://x.com/*",
+        "*://twitter.com/*",
+        "*://news.ycombinator.com/*"
+      ],
+      "js": ["adapters.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Block Anything",
+    "default_popup": "popup.html",
+    "default_icon": "icons/icon.svg"
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  }
+}

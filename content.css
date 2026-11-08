@@ -1,0 +1,19 @@
+.ba-hidden,
+.ba-pending-hide {
+  display: none !important;
+}
+
+.ba-pending-blur {
+  filter: blur(8px) grayscale(1) !important;
+  opacity: 0.5 !important;
+  transition: filter 0.15s, opacity 0.15s;
+}
+
+.ba-dim {
+  opacity: 0.15 !important;
+  outline: 2px dashed #f97316 !important;
+  outline-offset: -2px;
+}
+.ba-dim:hover {
+  opacity: 0.6 !important;
+}

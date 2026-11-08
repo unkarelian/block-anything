@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    body { width: 290px; padding: 14px; }
+    .stat { display: flex; justify-content: space-between; padding: 3px 0; }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 10px 0; }
+    #err { margin-top: 8px; font-size: 12px; word-break: break-word; }
+  </style>
+</head>
+<body>
+  <div class="row" style="justify-content:space-between">
+    <h1 style="font-size:16px">Block Anything</h1>
+    <label class="inline"><input type="checkbox" id="enabled"> On</label>
+  </div>
+  <div id="tab" class="muted" style="margin-top:6px">This site isn't supported.</div>
+  <hr>
+  <div class="stat"><span>API requests (this session)</span><b id="requests">0</b></div>
+  <div class="stat"><span>Cache hits</span><b id="hits">0</b></div>
+  <div class="stat"><span>Cost</span><b id="cost">$0</b></div>
+  <div class="stat"><span>Cached items</span><b id="cache">0</b></div>
+  <div id="err" class="bad"></div>
+  <hr>
+  <button id="options" style="width:100%">Rules and settings</button>
+  <script src="popup.js"></script>
+</body>
+</html>

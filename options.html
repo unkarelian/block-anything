@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Block Anything settings</title>
+  <link rel="stylesheet" href="ui.css">
+  <style>
+    main { max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; }
+    .rule { display: grid; grid-template-columns: auto 1fr 180px auto; gap: 8px; align-items: center; margin-bottom: 8px; }
+    @media (max-width: 600px) {
+      .rule { grid-template-columns: auto 1fr auto; }
+      .rule .sites { grid-column: 2 / 3; }
+      .grid2 { grid-template-columns: 1fr; }
+    }
+    #testOut { white-space: pre-wrap; font-family: ui-monospace, monospace; font-size: 12.5px; margin-top: 10px; }
+    #saved { margin-left: 10px; }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Block Anything</h1>
+  <p class="muted">Write rules in plain English. Each feed item is checked against the rules for that site, and matching items are hidden.</p>
+
+  <section class="card">
+    <h2>Rules</h2>
+    <p class="muted">The sites field takes a comma-separated list of domains, such as <code>youtube.com, reddit.com</code>, or <code>*</code> for every supported site.</p>
+    <div id="rules"></div>
+    <button id="addRule">+ Add rule</button>
+  </section>
+
+  <section class="card">
+    <h2>Model</h2>
+    <label for="apiKey">OpenRouter API key</label>
+    <input id="apiKey" type="password" placeholder="sk-or-...">
+    <p class="muted">Stored only in this browser's extension storage. Calls bill to this key.</p>
+
+    <label for="decisionsModel">Decision model ID</label>
+    <input id="decisionsModel" type="text">
+    <p class="muted">Any model on OpenRouter's Decisions API, such as <code>typesafe/jev-1.14</code>.</p>
+
+    <div class="grid2">
+      <div>
+        <label for="threshold">Block threshold: <span id="thresholdVal"></span></label>
+        <input id="threshold" type="range" min="0.3" max="0.98" step="0.01" style="width:100%">
+        <p class="muted">An item is hidden when its probability for any rule reaches this value.</p>
+      </div>
+      <div>
+        <label for="concurrency">Parallel requests</label>
+        <input id="concurrency" type="number" min="1" max="20">
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Behavior</h2>
+    <div class="grid2">
+      <div>
+        <label for="pendingMode">While an item is being checked</label>
+        <select id="pendingMode">
+          <option value="blur">Blur it</option>
+          <option value="hide">Hide it</option>
+          <option value="show">Show it normally</option>
+        </select>
+      </div>
+      <div>
+        <label for="blockedMode">When an item is blocked</label>
+        <select id="blockedMode">
+          <option value="hide">Hide it completely</option>
+          <option value="dim">Dim and outline it (for tuning)</option>
+        </select>
+      </div>
+    </div>
+  </section>
+
+  <div class="row" style="margin-bottom:20px">
+    <button class="primary" id="save">Save</button>
+    <button id="clearCache">Clear cache</button>
+    <span id="saved" class="muted"></span>
+  </div>
+
+  <section class="card">
+    <h2>Try a rule</h2>
+    <p class="muted">Paste one item per line, such as video titles. The test uses the saved settings and that site's rules.</p>
+    <div class="row" style="margin-bottom:8px">
+      <input id="testSite" type="text" value="youtube.com" style="max-width:200px">
+    </div>
+    <textarea id="testItems">Title: Senate passes new budget bill after late-night vote
+Title: I built a mechanical keyboard from scratch</textarea>
+    <div class="row" style="margin-top:8px"><button id="runTest">Run test</button></div>
+    <div id="testOut"></div>
+  </section>
+</main>
+<script src="options.js"></script>
+</body>
+</html>
