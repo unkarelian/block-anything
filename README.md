@@ -23,3 +23,7 @@ Add an entry to `BA_ADAPTERS` in `adapters.js` with a `selector` and an `extract
 
 - The API key lives in `browser.storage.local`. That's fine for a personal, bring-your-own-key extension. A published version that bills to your own key would need a small backend proxy.
 - Site selectors break when sites change their markup. YouTube is the most likely to drift.
+
+## License
+
+MIT. See `LICENSE`.
